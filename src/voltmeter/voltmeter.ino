@@ -29,41 +29,25 @@ void setup() {
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
   v1 = analogRead(volt1)* (5.0 / 1023.0);
   valSign1 = digitalRead(sign1);
   valSwitchDC_AC = digitalRead(switchDC_AC);
-  //if (v1 > 0){
-  //  digitalWrite(led_one, HIGH);
-  //  delay(5000);
-  //}
-  //else{
-  //  digitalWrite(led_one, LOW);
-  //  delay(5000);
-  //}
-  int brightness = map(v1, 0, 1023, 0, 255);
-  digitalWrite(led_one, brightness);
   Serial.print("Valor del switch: ");
-  Serial.print(valSwitchDC_AC);
-  
-
-  if(valSwitchDC_AC == 1){
-    Serial.print("Signo positivo de la señal DC: ");
-    Serial.print(valSign1);
+  Serial.println(valSwitchDC_AC);
+  if(valSwitchDC_AC == 1){//Lectura en DC
+    if(valSign1 == 1){//es una señal positiva
+      Serial.print("Valor positivo de la señal DC: ");
+      Serial.println(v1);
+      digitalWrite(led_one, v1);//solo para testear el led, falta logica
+    }
+    else{//es una señal negativa
+      Serial.print("Valor negativo de la señal DC: ");
+      Serial.println(-v1);
+    }
   }
   else{
-    Serial.print("Signo negativo de la señal DC: ");
-    Serial.print(valSign1);
-
+    //Serial.print("Signo negativo de la señal DC: ");
+    //Serial.print(valSign1);
   }
-  // Print the sensor value and LED brightness to the serial monitor
-  Serial.print("Sensor Value: ");
-  Serial.print(v1);
-  //Serial.print(" | LED Brightness: ");
-  //Serial.println(brightness);
-
   delay(100);
 }
-
-
-
