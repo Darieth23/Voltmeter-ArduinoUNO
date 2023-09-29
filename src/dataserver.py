@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 import serial
 import csv
 fileName = "output.csv"
@@ -8,7 +9,7 @@ ser = serial.Serial(
     parity=serial.PARITY_NONE,\
     stopbits=serial.STOPBITS_ONE,\
     bytesize=serial.EIGHTBITS,\
-    timeout=20\
+    timeout=200\
 )
 print("connected to: " + ser.portstr)
 print("Creating csv file")
@@ -17,7 +18,7 @@ valores = []
 file = open(fileName, mode='w', newline='')
 filewrite = csv.writer(file)
 filewrite.writerow(encabezado)
-num_datos = 8  # Número de datos que se esperan recibir antes de cerrar el puerto
+num_datos = 2  # Número de datos que se esperan recibir antes de cerrar el puerto
 contador_datos = 0  # Contador de datos recibidos
 while True:
     linea_serie = ser.readline().decode().strip()
