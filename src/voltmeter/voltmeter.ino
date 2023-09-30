@@ -13,7 +13,7 @@ int sign2 = 6;
 int sign3 = 7;
 int sign4 = 8;
 //leds
-int led_one = 2;
+int led_one = 1;
 int led_two = 2;
 int led_three = 3;
 int led_four = 4;
@@ -84,7 +84,7 @@ void loop() {
     valSign3 = digitalRead(sign3);
     valSign4 = digitalRead(sign4);
     if(valSign1 == 0){//valor negativo
-      v1 = -4.8*v1;//Esto xq se tiene una ganancia de 24000
+      v1 = -4.8*v1;//Esto xq se tiene una ganancia 4.8
     }
     else{//valor positivo
       v1 = v1 + (v1/1000.0)*3800.0;
@@ -147,6 +147,7 @@ void loop() {
     digitalWrite(led_one, 1);
   }
   else{
+    display.print("hola");
     digitalWrite(led_one, 0);
   }
   if((v2 > 20 || v2 < -20) && valSwitchDC_AC == 1){
@@ -177,14 +178,12 @@ void loop() {
     digitalWrite(led_four, 0);
   }
   if(valSwitchCOM == 1){
-    //mySerial.listen();
-    //Serial.print("Valor senal: ");
+    mySerial.listen();
     Serial.println(v1);
     Serial.println(v2);
-    //Serial.println(v3);
-    //Serial.println(v4);
-    //Serial.println("V");
-    //mySerial.stopListening();
+    Serial.println(v3);
+    Serial.println(v4);
+    mySerial.stopListening();
   }
   display.print("V1: ");
   display.print(v1);

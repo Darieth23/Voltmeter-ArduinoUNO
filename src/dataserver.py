@@ -18,20 +18,21 @@ valores = []
 file = open(fileName, mode='w', newline='')
 filewrite = csv.writer(file)
 filewrite.writerow(encabezado)
-num_datos = 2  # Número de datos que se esperan recibir antes de cerrar el puerto
-contador_datos = 0  # Contador de datos recibidos
+num_datos = int(input("Por favor digite la cantidad de datos a medir, luego ENTER: "))  # Filas de datos a recibir
+datos_totales = num_datos*4
+contador_datos = 0
+contador_datos_towrite = 0
 while True:
     linea_serie = ser.readline().decode().strip()
     print("Valor actual de medicion: " + linea_serie)
     valores.append(linea_serie)
-    contador_datos += 1  # Incrementar el contador de datos recibidos
-    contador += 1
-    print("Contador de datos: " + str(contador_datos))
-    if contador == 4:
+    contador_datos_towrite += 1
+    if contador_datos_towrite == 4:
         print("Escribiendo una nueva linea en el CSV")
-        contador = 0
         filewrite.writerow(valores)
         valores = []
+        contador_datos_towrite = 0
+        contador_datos += 1
     if contador_datos >= num_datos:
         break
 ser.close()
