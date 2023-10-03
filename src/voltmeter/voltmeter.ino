@@ -147,7 +147,6 @@ void loop() {
     digitalWrite(led_one, 1);
   }
   else{
-    display.print("hola");
     digitalWrite(led_one, 0);
   }
   if((v2 > 20 || v2 < -20) && valSwitchDC_AC == 1){
