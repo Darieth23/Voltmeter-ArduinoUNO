@@ -1,3 +1,8 @@
+//Solucion laboratorio 3
+//Profesor Marco Villalta
+//Alumnos Darieth Saddam Fonseca y Bryan Salazar Martínez
+//Curso Microcontroladores
+
 #include <Adafruit_PCD8544.h>
 #include <SoftwareSerial.h>
 //Pines analógicos de entradas de tensión
