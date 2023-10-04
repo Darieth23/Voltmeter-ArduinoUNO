@@ -114,7 +114,7 @@ void loop() {
     }
   }
   else if(valSwitchDC_AC == 0){//lectura en AC y comunicacion deshabilitada
-    for(i = 0; i<500; i++){
+    for(i = 0; i<1000; i++){
       temp1 = analogRead(volt1);
       if(temp1 > v1){
         v1 = temp1;
