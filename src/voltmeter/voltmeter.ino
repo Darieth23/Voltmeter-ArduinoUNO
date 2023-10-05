@@ -37,6 +37,7 @@ float temp1 = 0;
 float temp2 = 0;
 float temp3 = 0;
 float temp4 = 0;
+int bandera = 0;
 // Conexiones del PCD8544
 #define CLK 13
 #define DIN 12
@@ -73,7 +74,10 @@ void loop() {
   int i = 0;
   valSwitchDC_AC = digitalRead(switchDC_AC);//Leer si se quiere AC o DC
   valSwitchCOM = digitalRead(switchCOM);//Com
-  if(valSwitchDC_AC == 1){//lectura en DC y comunicacion deshabilitada
+  if(bandera == 0){
+    bandera = 1;
+  }
+  else if(valSwitchDC_AC == 1){//lectura en DC y comunicacion deshabilitada
     for(i = 0; i<500; i++){
       v1 = analogRead(volt1);
       v2 = analogRead(volt2);
